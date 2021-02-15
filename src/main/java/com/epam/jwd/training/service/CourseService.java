@@ -31,6 +31,7 @@ public class CourseService implements CommonService<CourseDto> {
         return Optional.empty();
     }
 
+    //todo: need Course instead of CourseDto
     @Override
     public boolean create(CourseDto entity) {
         courseDao.create(entity);
@@ -40,6 +41,7 @@ public class CourseService implements CommonService<CourseDto> {
         return new CourseDto(course.getName(), course.getDescription(), course.getStartDate());
     }
 
+    //todo: pattern Mapper?
     private Course convertFromDto(CourseDto courseDto) {
         return new Course()
     }

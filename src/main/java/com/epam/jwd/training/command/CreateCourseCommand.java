@@ -1,15 +1,11 @@
 package com.epam.jwd.training.command;
 
 import com.epam.jwd.training.dao.CourseDao;
-import com.epam.jwd.training.entity.BaseEntity;
-import com.epam.jwd.training.entity.Course;
 import com.epam.jwd.training.entity.dto.CourseDto;
 import com.epam.jwd.training.service.CommonService;
 import com.epam.jwd.training.service.CourseService;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
 
 public enum CreateCourseCommand implements Command {
     INSTANCE;
@@ -39,13 +35,11 @@ public enum CreateCourseCommand implements Command {
         String name = (String) request.getAttribute("name");
         String description = (String) request.getAttribute("description");
         LocalDateTime startDate = (LocalDateTime) request.getAttribute("startDate");
-        BaseEntity newCourse = new CourseDto(name, description, startDate);
-        courseService.
-        response.sendRedirect("list");
+        CourseDto newCourse = new CourseDto(name, description, startDate);
+//        response.sendRedirect("list");
 
-
-        final List<CourseDto> courses = courseService.findAll().orElse(Collections.emptyList());
-        request.setAttribute(COURSES_ATTRIBUTE_NAME, courses);
+        boolean courseWasCreated = courseService.create(newCourse);
+        request.setAttribute(COURSES_ATTRIBUTE_NAME, courseWasCreated);
         return COURSES_PAGE_RESPONSE;
     }
 }

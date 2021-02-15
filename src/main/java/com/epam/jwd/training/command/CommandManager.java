@@ -4,7 +4,8 @@ public enum CommandManager {
 //    LOGIN(LoginCommand.INSTANCE),
 //    LOGOUT(LogoutCommand.INSTANCE),
     DEFAULT(ShowMainPageCommand.INSTANCE),
-    SHOW_COURSES(ShowAllCoursesCommand.INSTANCE);
+    SHOW_COURSES(ShowAllCoursesCommand.INSTANCE),
+    CREATE_COURSE(CreateCourseCommand.INSTANCE); // todo: combine with show_courses_page
 
     private final Command command;
 
